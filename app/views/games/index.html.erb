@@ -1,0 +1,34 @@
+<div class='homepage'>
+  <h1 class='text-center title'>List of All Games</h1>
+  <hr />
+
+  <% if @games.empty? %>
+      <h3>Please Add A Game!</h3>
+      <h3>There Are No Games Found.</h3>
+  <% else %>
+    <div class="container game-list">
+      <% @games.each do |game| %>
+        <ul>
+          <h2 class='game-name'><%= game.name %></h2>
+          <div class='game-buttons'>
+            <span class='padpad'>
+              <%= link_to "Select #{game.name}", game_path(game), class: 'btn btn-primary color grow round' %>
+            </span>
+            <span class='padpad'>
+              <%= link_to "Edit #{game.name}", edit_game_path(game), class: 'btn btn-warning text-center grow round' %>
+            </span>
+            <span class='padpad'>
+              <%= link_to "Delete #{game.name}", game_path(game), method: :delete, class: 'btn btn-danger text-center grow round' %>
+            </span>
+          </div>
+          <hr class='game-hr'>
+        </ul>
+      <% end %>
+    </div>
+  <% end %>
+  <div class='text-right'>
+    <div class="container create">
+      <%= link_to 'Add A New Game', new_game_path, class: 'btn btn-primary color grow' %>
+    </div>
+  </div>
+</div>
